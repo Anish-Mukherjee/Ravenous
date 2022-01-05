@@ -5,10 +5,14 @@ import {Business} from '../Business/Business.js';
 export class BusinessList extends React.Component {
 	render() {
 		return (
-			<div className="BusinessList">
-				<h1>Just checkin if I work!</h1>
-			  	
-			</div>
+			<div class="BusinessList">
+  				<Business />
+				<Business />
+      			<Business />
+				<Business />
+				<Business />
+      			<Business />
+    		</div>
 		)
 	}
 };
