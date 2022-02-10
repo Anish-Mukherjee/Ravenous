@@ -11,7 +11,7 @@ export default class SearchBar extends Component {
 						<input
 							class="w-full h-12 text-sm border-gray-100 rounded-lg"
 							id="search"
-							placeholder="Search for a postcode"
+							placeholder="Search for a particular restaurant"
 							type="text"
 						/>
 					</div>
