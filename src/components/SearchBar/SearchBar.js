@@ -1,82 +1,65 @@
-import React from 'react';
-import './SearchBar.css';
+import React, { Component } from 'react'
 
-class SearchBar extends React.Component {
-  constructor(props) {
-    super(props);
+export default class SearchBar extends Component {
+	render() {
+		return (
+			<section class="max-w-5xl p-6 mx-auto bg-white shadow-xl rounded-xl">
+				<form class="flex mb-0 space-x-4">
+					<div class="flex-1">
+						<label class="sr-only" for="search"> Address </label>
 
-    this.state = {
-      term: '',
-      location: '',
-      sortBy: 'best_match'
-    };
+						<input
+							class="w-full h-12 text-sm border-gray-100 rounded-lg"
+							id="search"
+							placeholder="Search for a postcode"
+							type="text"
+						/>
+					</div>
 
-    this.handleTermChange = this.handleTermChange.bind(this);
-    this.handleLocationChange = this.handleLocationChange.bind(this);
-    this.handleSearch = this.handleSearch.bind(this);
-    
+					<div class="flex-1 hidden sm:block">
+						<label class="sr-only" for="location"> Location </label>
 
-    this.sortByOptions = {
-      'Best Match': 'best_match',
-      'Highest Rated': 'rating',
-      'Most Reviewed': 'review_count'
-    };
-  }
+						<select class="w-full h-12 text-sm border-gray-100 rounded-lg" id="location">
+							<option>All regions</option>
+							<option>East Midlands</option>
+							<option>East of England</option>
+							<option>London (Greater)</option>
+						</select>
+					</div>
 
-  getSortByClass(sortByOption) {
-    if (this.state.sortBy === sortByOption) {
-      return 'active';
-    }
-    return '';
-  }
+					<div class="flex-1 hidden sm:block">
+						<label class="sr-only" for="type"> Property Type </label>
 
-  handleSortByChange(sortByOption) {
-    this.setState({sortBy: sortByOption});
-  }
+						<select class="w-full h-12 text-sm border-gray-100 rounded-lg" id="type">
+							<option>Any property</option>
+							<option>Detached House</option>
+							<option>Semi Detached House</option>
+							<option>Bungalow</option>
+							<option>Flat</option>
+						</select>
+					</div>
 
-  handleTermChange(event) {
-    this.setState({term: event.target.value});
-  }
+					<div>
+						<button
+							class="inline-flex items-center justify-center w-12 h-12 text-gray-600 bg-gray-100 rounded-lg"
+							type="submit"
+						>
+							<span class="sr-only">Submit</span>
 
-  handleLocationChange(event) {
-    this.setState({location: event.target.value});
-  }
-
-  handleSearch(event) {
-    this.props.searchYelp(this.state.term, this.state.location, this.state.sortBy);
-
-    event.preventDefault();
-  }
-
-  renderSortByOptions() {
-    return Object.keys(this.sortByOptions).map(sortByOption => {
-      let sortByOptionValue = this.sortByOptions[sortByOption];
-      return (<li className={this.getSortByClass(sortByOptionValue)}
-                  key={sortByOptionValue}
-                  onClick={this.handleSortByChange.bind(this, sortByOptionValue)}>
-                {sortByOption}
-             </li>);
-    });
-  }
-
-  render() {
-    return (
-      <div className="SearchBar">
-        <div className="SearchBar-sort-options">
-          <ul>
-            {this.renderSortByOptions()}
-          </ul>
-        </div>
-        <div className="SearchBar-fields">
-          <input placeholder="Search Businesses" onChange={this.handleTermChange} />
-          <input placeholder="Where?" onChange={this.handleLocationChange}/>
-        </div>
-        <div className="SearchBar-submit">
-          <a onClick={this.handleSearch}>Let's Go</a>
-        </div>
-      </div>
-    );
-  }
+							<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+								<path
+									d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+								></path>
+							</svg>
+						</button>
+					</div>
+				</form>
+			</section>
+		)
+	}
 }
 
-export default SearchBar;
+
